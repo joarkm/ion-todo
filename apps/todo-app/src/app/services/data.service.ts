@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 export interface Todo {
   description: string;
@@ -8,7 +8,7 @@ export interface Todo {
   providedIn: 'root',
 })
 export class DataService {
-  public todos: Todo[] = [
+  #todos: Todo[] = [
     {
       description: 'Book trip to Vegas',
     },
@@ -20,11 +20,19 @@ export class DataService {
     },
   ];
 
-  public getTodos(): Todo[] {
-    return this.todos;
+  public todos = signal(this.#todos);
+
+  public addTodo(todoMessage: string): void {
+    this.todos.update((todos) => {
+      const newTodos = [...todos];
+      newTodos.push({
+        description: todoMessage,
+      });
+      return newTodos;
+    });
   }
 
   public getTodoById(id: number): Todo {
-    return this.todos[id];
+    return this.todos()[id];
   }
 }

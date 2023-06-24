@@ -15,7 +15,14 @@ import { TodoComponent } from '../todo/todo.component';
 export class HomePage {
   readonly #dataService = inject(DataService);
 
+  addTodo(): void {
+    const todoMessage = prompt('Enter a todo message');
+    if (todoMessage) {
+      this.#dataService.addTodo(todoMessage);
+    }
+  }
+
   getTodos(): Todo[] {
-    return this.#dataService.getTodos();
+    return this.#dataService.todos();
   }
 }

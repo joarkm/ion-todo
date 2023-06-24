@@ -11,6 +11,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-button (click)="addTodo()">
+    <ion-icon slot="end" name="add"></ion-icon>
+    Add
+  </ion-button>
+
   <ion-list>
     <ion-item *ngFor="let todo of getTodos()">
       <ion-todo-todo [todo]="todo"></ion-todo-todo>
