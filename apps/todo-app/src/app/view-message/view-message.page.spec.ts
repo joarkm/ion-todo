@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 
-import { ViewMessagePageRoutingModule } from './view-message-routing.module';
+import { routes } from './view-message.routes';
 import { ViewMessagePage } from './view-message.page';
 
 describe('ViewMessagePage', () => {
@@ -12,11 +12,8 @@ describe('ViewMessagePage', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [ViewMessagePage],
-      imports: [
-        IonicModule.forRoot(),
-        ViewMessagePageRoutingModule,
-        RouterModule.forRoot([]),
-      ],
+      imports: [IonicModule.forRoot()],
+      providers: [provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ViewMessagePage);

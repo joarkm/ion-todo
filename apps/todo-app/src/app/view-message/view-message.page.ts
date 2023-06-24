@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService, Message } from '../services/data.service';
+import { NgIf } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'ion-todo-view-message',
   templateUrl: './view-message.page.html',
   styleUrls: ['./view-message.page.scss'],
+  standalone: true,
+  imports: [IonicModule, NgIf],
 })
 export class ViewMessagePage implements OnInit {
   public message!: Message;
@@ -24,6 +28,7 @@ export class ViewMessagePage implements OnInit {
   }
 
   getBackButtonText() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const win = window as any;
     const mode = win && win.Ionic && win.Ionic.mode;
     return mode === 'ios' ? 'Inbox' : '';

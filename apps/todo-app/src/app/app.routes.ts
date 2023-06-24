@@ -8,11 +8,7 @@ export const appRoutes: Route[] = [
   {
     path: 'message/:id',
     loadChildren: () =>
-      import('./view-message/view-message.module').then(
-        (m) => m.ViewMessagePageModule
-      ),
-    // loadChildren: () =>
-    //   import('./view-message').then((m) => m.VIEW_MESSAGE_ROUTES),
+      import('./view-message').then((m) => m.VIEW_MESSAGE_ROUTES),
   },
   {
     path: '',
