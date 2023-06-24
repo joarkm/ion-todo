@@ -1,32 +1,21 @@
 import { Component, inject } from '@angular/core';
-import { RefresherCustomEvent, IonicModule } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 
-import { DataService, Message } from '../services/data.service';
-import { MessageComponent } from '../message/message.component';
 import { NgFor } from '@angular/common';
+import { DataService, Todo } from '../services/data.service';
+import { TodoComponent } from '../todo/todo.component';
 
 @Component({
-    selector: 'ion-todo-home',
-    templateUrl: 'home.page.html',
-    styleUrls: ['home.page.scss'],
-    standalone: true,
-    imports: [
-        IonicModule,
-        NgFor,
-        MessageComponent,
-    ],
+  selector: 'ion-todo-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  standalone: true,
+  imports: [IonicModule, NgFor, TodoComponent],
 })
 export class HomePage {
-  private data = inject(DataService);
-  constructor() {}
+  readonly #dataService = inject(DataService);
 
-  refresh(ev: any) {
-    setTimeout(() => {
-      (ev as RefresherCustomEvent).detail.complete();
-    }, 3000);
-  }
-
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  getTodos(): Todo[] {
+    return this.#dataService.getTodos();
   }
 }
