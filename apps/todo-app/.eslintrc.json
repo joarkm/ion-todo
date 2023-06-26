@@ -26,9 +26,7 @@
           {
             "suffixes": ["Page", "Component"]
           }
-        ],
-        "@angular-eslint/no-empty-lifecycle-method": 0,
-        "@typescript-eslint/no-empty-function": 0
+        ]
       },
       "extends": [
         "plugin:@nx/angular",
