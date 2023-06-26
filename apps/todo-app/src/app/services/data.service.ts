@@ -6,6 +6,7 @@ export interface Todo {
   createdAt?: Date;
   completedAt?: Date;
   lastEditedAt?: Date;
+  dueAt?: Date;
 }
 
 @Injectable({
@@ -45,6 +46,17 @@ export class DataService {
         createdAt: now,
         lastEditedAt: now,
       });
+      return newTodos;
+    });
+  }
+
+  public updateTodo(id: string, update: Omit<Partial<Todo>, 'id'>) {
+    this.todos.update((todos) => {
+      const newTodos = [...todos];
+      const todo = newTodos.find((t) => t.id === id);
+      if (todo) {
+        Object.assign(todo, update);
+      }
       return newTodos;
     });
   }
