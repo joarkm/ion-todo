@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,10 +6,12 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { ActionSheetButton, IonicModule } from '@ionic/angular';
-import { DataService, Todo } from '../services/data.service';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { calculateDueDate } from '@ion-todo/todo/shared/todo-utils';
+import { ActionSheetButton, IonicModule } from '@ionic/angular';
+import { format } from 'date-fns';
+
+import { DataService, Todo } from '../services/data.service';
 
 type DueDateChoice = 'today' | 'tomorrow' | 'nextWeek' | 'never';
 interface DueDateChoiceData {
@@ -30,20 +33,20 @@ export class TodoComponent {
   inEditMode = false;
   public actionSheetButtons: ActionSheetButton<DueDateChoiceData>[] = [
     {
-      text: 'I dag (søndag)',
+      text: `I dag (${format(calculateDueDate('today'), 'iiii')})`,
       role: 'destructive',
       data: {
         choice: 'today',
       },
     },
     {
-      text: 'I morgen (mandag)',
+      text: `I morgen (${format(calculateDueDate('tomorrow'), 'iiii')})`,
       data: {
         choice: 'tomorrow',
       },
     },
     {
-      text: 'Neste uke (mandag)',
+      text: `Neste uke (${format(calculateDueDate('nextWeek'), 'iiii')})`,
       data: {
         choice: 'nextWeek',
       },
@@ -82,16 +85,7 @@ export class TodoComponent {
     }
   }
 
-  #calculateDueDate(choice: Omit<DueDateChoice, 'never'>): Date {
-    // TODO: Calculate due date based on choice (today, tomorrow, next week) (use date-fns addWeeks etc.?)
-    switch (choice) {
-      case 'today':
-        return new Date();
-      case 'tomorrow':
-        return new Date(); // Date-fns addDays(1)
-      case 'nextWeek':
-        return new Date(); // Date-fns addWeeks(1) (use startOfWeek)
-    }
-    return new Date();
+  #calculateDueDate(choice: 'today' | 'tomorrow' | 'nextWeek'): Date {
+    return calculateDueDate(choice);
   }
 }
