@@ -1,0 +1,7 @@
+👋 Welcome to "ion-todo" in GitHub Codespaces!
+
+🛠️  Your environment is fully setup with all the required software.
+
+📝 Edit away, run your app as usual, and we'll automatically make it available for you to access.
+
+👉 Next steps: Code away!
