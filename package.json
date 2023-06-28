@@ -2,7 +2,9 @@
   "name": "@ion-todo/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/build-angular": "~16.1.0",

@@ -2,10 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/configuration-editing/schemas/devContainer.codespaces.schema.json",
   "image": "mcr.microsoft.com/devcontainers/typescript-node",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/pnpm:2": {}
   },
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm install",
+  "postCreateCommand": "pnpm install",
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.
