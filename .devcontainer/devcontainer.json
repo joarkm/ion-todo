@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode/main/extensions/configuration-editing/schemas/devContainer.codespaces.schema.json",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "npm install",
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "Angular.ng-template",
+        "nrwl.angular-console",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "Gruntfuggly.todo-tree",
+        "firsttris.vscode-jest-runner",
+        "bierner.github-markdown-preview",
+        // Utility in-edtior
+        "mlewand.select-part-of-word",
+        "Tyriar.sort-lines",
+        "wmaurer.change-case",
+        "github.vscode-github-actions"
+      ]
+    }
+  }
+}
