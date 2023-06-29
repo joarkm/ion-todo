@@ -10,10 +10,10 @@ export function calculateDueDate(
       dueDate = now;
       break;
     case 'tomorrow':
-      dueDate = addDays(now, 1); // Date-fns addDays(1)
+      dueDate = addDays(now, 1);
       break;
     case 'nextWeek':
-      dueDate = startOfWeek(addWeeks(now, 1), { weekStartsOn: 1 }); // Date-fns addWeeks(1) (use startOfWeek)
+      dueDate = startOfWeek(addWeeks(now, 1), { weekStartsOn: 1 });
       break;
     default:
       break;
