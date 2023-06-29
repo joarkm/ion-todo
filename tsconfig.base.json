@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ion-todo/todo/shared/todo-utils": [
+      "@ion-todo/todo-utils": [
         "libs/todo/shared/todo-utils/src/index.ts"
       ]
     }
