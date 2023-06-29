@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "serve:codespaces": "pnpm exec nx run todo-app:serve --host=0.0.0.0 --public-host=${CODESPACE_NAME}-4200.preview.app.github.dev"
   },
   "private": true,
   "devDependencies": {
