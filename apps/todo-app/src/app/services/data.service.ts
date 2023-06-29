@@ -37,27 +37,23 @@ export class DataService {
   public todos = signal(this.#todos);
 
   public addTodo(todoMessage: string): void {
-    this.todos.update((todos) => {
-      const newTodos = [...todos];
+    this.todos.mutate((todos) => {
       const now = new Date();
-      newTodos.push({
+      todos.push({
         id: crypto.randomUUID(),
         description: todoMessage,
         createdAt: now,
         lastEditedAt: now,
       });
-      return newTodos;
     });
   }
 
   public updateTodo(id: string, update: Omit<Partial<Todo>, 'id'>) {
-    this.todos.update((todos) => {
-      const newTodos = [...todos];
-      const todo = newTodos.find((t) => t.id === id);
+    this.todos.mutate((todos) => {
+      const todo = todos.find((t) => t.id === id);
       if (todo) {
         Object.assign(todo, update);
       }
-      return newTodos;
     });
   }
 
