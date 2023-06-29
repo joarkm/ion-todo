@@ -1,8 +1,18 @@
 {
   "recommendations": [
-    "nrwl.angular-console",
     "esbenp.prettier-vscode",
+    "Angular.ng-template",
+    "nrwl.angular-console",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "Gruntfuggly.todo-tree",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "bierner.github-markdown-preview",
+    // Utility in-edtior
+    "mlewand.select-part-of-word",
+    "Tyriar.sort-lines",
+    "wmaurer.change-case",
+    "github.vscode-github-actions"
   ]
 }
