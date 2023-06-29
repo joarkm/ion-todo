@@ -1,83 +1,63 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
-export interface Message {
-  fromName: string;
-  subject: string;
-  date: string;
-  id: number;
-  read: boolean;
+export interface Todo {
+  id: string;
+  description: string;
+  createdAt?: Date;
+  completedAt?: Date;
+  lastEditedAt?: Date;
+  dueAt?: Date;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  public messages: Message[] = [
+  #todos: Todo[] = [
     {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
-      id: 0,
-      read: false,
+      id: crypto.randomUUID(),
+      description: 'Book trip to Vegas',
+      createdAt: new Date('2021-01-01'),
+      lastEditedAt: new Date('2021-01-01'),
     },
     {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
-      id: 1,
-      read: false,
+      id: crypto.randomUUID(),
+      description: 'Report Results',
+      createdAt: new Date('2021-01-01'),
+      lastEditedAt: new Date('2021-01-01'),
     },
     {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
-      id: 2,
-      read: false,
-    },
-    {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
-      id: 3,
-      read: false,
-    },
-    {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
-      id: 4,
-      read: false,
-    },
-    {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
-      id: 5,
-      read: false,
-    },
-    {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
-      id: 6,
-      read: false,
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false,
+      id: crypto.randomUUID(),
+      description: 'Update invitation for swim lessons',
+      createdAt: new Date('2021-01-01'),
+      lastEditedAt: new Date('2021-01-01'),
     },
   ];
 
-  constructor() {}
+  public todos = signal(this.#todos);
 
-  public getMessages(): Message[] {
-    return this.messages;
+  public addTodo(todoMessage: string): void {
+    this.todos.mutate((todos) => {
+      const now = new Date();
+      todos.push({
+        id: crypto.randomUUID(),
+        description: todoMessage,
+        createdAt: now,
+        lastEditedAt: now,
+      });
+    });
   }
 
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  public updateTodo(id: string, update: Omit<Partial<Todo>, 'id'>) {
+    this.todos.mutate((todos) => {
+      const todo = todos.find((t) => t.id === id);
+      if (todo) {
+        Object.assign(todo, update);
+      }
+    });
+  }
+
+  public getTodoById(id: number): Todo {
+    return this.todos()[id];
   }
 }

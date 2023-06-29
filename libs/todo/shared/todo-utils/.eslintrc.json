@@ -1,5 +1,5 @@
 {
-  "extends": ["../../.eslintrc.json"],
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "ionTodo",
+            "prefix": "ionTodoUtils",
             "style": "camelCase"
           }
         ],
@@ -17,14 +17,8 @@
           "error",
           {
             "type": "element",
-            "prefix": "ion-todo",
+            "prefix": "ion-todo-utils",
             "style": "kebab-case"
-          }
-        ],
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": ["Page", "Component"]
           }
         ]
       },

@@ -1,0 +1,45 @@
+<ng-container *ngIf="todo !== undefined && !inEditMode">
+  <ion-checkbox labelPlacement="end">{{ todo.description }}</ion-checkbox>
+</ng-container>
+
+<ng-container *ngIf="todo === undefined">
+  <ion-grid>
+    <ion-row class="ion-align-items-center ion-justify-content-between">
+      <ion-col size="auto">
+        <ion-input
+          #todoInput
+          type="text"
+          [value]="newTodoMessage()"
+          (ionInput)="newTodoMessage.set(todoInput.value + '' || '')"
+          [placeholder]="placeholderText"
+        ></ion-input>
+      </ion-col>
+      <ion-col size="1">
+        <ion-button (click)="addTodo()">
+          <ion-icon slot="end" name="add"></ion-icon>
+          Add
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="light" id="open-action-sheet">
+          <ion-icon slot="start" name="today-outline"></ion-icon>
+          Angi forfall
+        </ion-button>
+        <ion-action-sheet
+          trigger="open-action-sheet"
+          header="Forfaller"
+          [buttons]="actionSheetButtons"
+          (didDismiss)="dueDateChosen($event)"
+        ></ion-action-sheet>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-container>
+
+<ng-container *ngIf="todo !== undefined && inEditMode">
+  <ion-checkbox disabled labelPlacement="end"
+    >{{ todo.description }}
+  </ion-checkbox>
+</ng-container>

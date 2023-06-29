@@ -20,6 +20,7 @@
         "nrwl.angular-console",
         "dbaeumer.vscode-eslint",
         "eamodio.gitlens",
+        "github.vscode-pull-request-github",
         "Gruntfuggly.todo-tree",
         "firsttris.vscode-jest-runner",
         "bierner.github-markdown-preview",
